@@ -13,4 +13,7 @@ import java.util.List;
 public interface BankAccountRepository extends JpaRepository<BankAccount,String> {
     @RestResource(path="/bytype")
     List<BankAccount> findByType(@Param("T") AccountType type);
+    List<BankAccount> findByCustomerId(String customerId);
+
+
 }
