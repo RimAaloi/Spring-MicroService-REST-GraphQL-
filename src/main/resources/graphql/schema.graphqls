@@ -1,0 +1,38 @@
+type Query {
+    bankAccounts: [BankAccount]
+    account(id: String!): BankAccount
+    customers: [Customer]
+}
+
+type Mutation {
+    createAccount(account: BankAccountInput): BankAccount
+    updateAccount(id: String!, account: BankAccountInput): BankAccount
+    deleteAccount(id: String!): Boolean
+}
+
+type Customer {
+    id: ID!
+    name: String!
+    bankAccounts: [BankAccount]
+}
+
+type BankAccount {
+    id: ID!
+    balance: Float!
+    currency: String!
+    type: AccountType!
+    createdAt: String
+    customer: Customer
+}
+
+enum AccountType {
+    CURRENT_ACCOUNT
+    SAVING_ACCOUNT
+}
+
+input BankAccountInput {
+    balance: Float!
+    currency: String!
+    type: AccountType!
+    customerId: String
+}
